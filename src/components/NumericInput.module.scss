@@ -1,0 +1,46 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 700;
+}
+
+.inputWrapper {
+  display: inline-block;
+
+  i {
+    height: 30px;
+    width: 20px;
+    position: absolute;
+    padding: 5px;
+
+    &.bill {
+      background: url("../assets/icon-dollar.svg") no-repeat center;
+    }
+    &.people {
+      background: url("../assets/icon-person.svg") no-repeat center;
+    }
+  }
+
+  .input {
+    text-align: end;
+    background-color: hsl(189, 41%, 97%);
+    border: none;
+    height: 30px;
+    border-radius: 5px;
+    padding: 5px 5px 5px 40px;
+    color: hsl(186, 14%, 43%);
+
+    /* Firefox */
+    -moz-appearance: textfield;
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+}
