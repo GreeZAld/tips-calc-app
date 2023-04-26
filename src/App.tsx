@@ -1,14 +1,26 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import "./App.scss";
 import NumericInput from "./components/NumericInput";
 import TipSelector from "./components/TipSelector";
 
+interface ITipDataProps {
+  bill: number | undefined;
+  people: number | undefined;
+  total: number;
+  personTotal: number;
+  tips: number | undefined;
+  customTip: number | undefined;
+}
+
 function App() {
-  const [bill, setBill] = useState<number>();
-  const [people, setPeople] = useState<number>();
-  const [total, setTotal] = useState<number>();
-  const [personTotal, setPersonTotal] = useState<number>();
-  const [tips, setTips] = useState<number>();
+  const [tipData, setTipData] = useState<ITipDataProps>({
+    bill: undefined,
+    people: undefined,
+    total: 0,
+    personTotal: 0,
+    tips: undefined,
+    customTip: undefined,
+  });
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target;
@@ -17,50 +29,75 @@ function App() {
       input.value = input.value.slice(0, input.maxLength);
     }
 
-    switch (input.name) {
-      case "bill":
-        if (input.value.length) {
-          setBill(parseFloat(input.value));
-        } else {
-          setBill(0);
-        }
-        break;
-      case "people":
-        if (input.value.length) {
-          setPeople(parseFloat(input.value));
-        } else {
-          setPeople(0);
-        }
-        break;
-      case "tips":
-        if (input.value.length) {
-          setTips(parseFloat(input.value));
-        } else {
-          setTips(0);
-        }
-        break;
+    setTipData({
+      ...tipData,
+      [input.name]: parseFloat(input.value),
+    });
+  };
 
-      default:
-        break;
-    }
+  const handleReset = () => {
+    setTipData({
+      bill: undefined,
+      people: undefined,
+      total: 0,
+      personTotal: 0,
+      tips: undefined,
+      customTip: undefined,
+    });
   };
 
   const onPercentClick = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    setTips(parseFloat(e.currentTarget.value));
+    setTipData({
+      ...tipData,
+      tips: parseFloat(e.currentTarget.value),
+    });
   };
 
+  interface IMemoizedSetTipDataProps {
+    (tipDataToUpdate: Partial<ITipDataProps>): void;
+  }
+
+  const memoSetTipData: IMemoizedSetTipDataProps = useCallback(
+    (tipDataToUpdate) => {
+      setTipData((prevTipData: ITipDataProps) => ({
+        ...prevTipData,
+        ...tipDataToUpdate,
+      }));
+    },
+    [setTipData]
+  );
+
   useEffect(() => {
-    if (bill && people) {
-      setTotal(bill);
-      setPersonTotal(parseFloat((bill / people).toFixed(2)));
-      if (tips) {
-        setTotal(bill + bill * (tips / 100));
-        total && setPersonTotal(parseFloat((total / people).toFixed(2)));
-      }
+    if (tipData.bill) {
+      memoSetTipData({
+        total: tipData.tips
+          ? tipData.bill + tipData.bill * (tipData.tips / 100)
+          : tipData.bill,
+      });
+    } else {
+      memoSetTipData({
+        total: 0,
+      });
     }
-  }, [bill, tips, total, people]);
+
+    if (tipData.people) {
+      memoSetTipData({
+        personTotal: parseFloat((tipData.total / tipData.people).toFixed(2)),
+      });
+    } else {
+      memoSetTipData({
+        personTotal: 0,
+      });
+    }
+  }, [
+    memoSetTipData,
+    tipData.bill,
+    tipData.people,
+    tipData.tips,
+    tipData.total,
+  ]);
 
   return (
     <>
@@ -69,7 +106,7 @@ function App() {
         onChange={onInputChange}
         icon="bill"
         maxLength={10}
-        value={bill}
+        value={tipData.bill}
         field="bill"
       />
       <TipSelector
@@ -82,11 +119,14 @@ function App() {
         onChange={onInputChange}
         icon="people"
         maxLength={3}
-        value={people}
+        value={tipData.people}
         field="people"
       />
-      <p>Total:{total}</p>
-      <p>Total per person:{personTotal}</p>
+      <p>Total:{tipData.total}</p>
+      <p>Total per person:{tipData.personTotal}</p>
+      <button onClick={handleReset} disabled={!tipData.total}>
+        RESET
+      </button>
     </>
   );
 }
