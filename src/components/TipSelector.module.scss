@@ -1,0 +1,33 @@
+@import "./variables.scss";
+
+.input {
+  background-color: $very-light-grayish-cyan;
+  height: 45px;
+  width: 120px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 0;
+  font-size: 24px;
+  color: $very-dark-cyan;
+  outline-color: $strong-cyan;
+  text-align: end;
+
+  /* Firefox */
+  -moz-appearance: textfield;
+
+  /* Chrome, Safari, Edge, Opera */
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  &:focus::placeholder {
+    color: transparent;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

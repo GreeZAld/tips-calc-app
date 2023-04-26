@@ -1,0 +1,29 @@
+@import "./variables.scss";
+
+@mixin button {
+  height: 45px;
+  width: 120px;
+  border: none;
+  border-radius: 5px;
+  margin: 5px;
+  font-size: 24px;
+  color: $very-light-grayish-cyan;
+  cursor: pointer;
+}
+
+.inactiveButton {
+  @include button;
+  background-color: $very-dark-cyan;
+
+  &:hover,
+  &:active {
+    background-color: $light-grayish-cyan;
+    color: $very-dark-cyan;
+  }
+}
+
+.activeButton {
+  @include button;
+  background-color: $strong-cyan;
+  color: $very-dark-cyan;
+}

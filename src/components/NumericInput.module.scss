@@ -1,7 +1,8 @@
+@import "./variables.scss";
+
 .wrapper {
   display: flex;
   flex-direction: column;
-  width: 400px;
 }
 
 .labelWrapper {
@@ -37,12 +38,14 @@
 
   .input {
     text-align: end;
-    background-color: hsl(189, 41%, 97%);
+    background-color: $very-light-grayish-cyan;
     border: none;
     height: 30px;
     border-radius: 5px;
     padding: 5px 5px 5px 40px;
-    color: hsl(186, 14%, 43%);
+    color: $dark-grayish-cyan;
+    font-size: 24px;
+    outline-color: $strong-cyan;
 
     /* Firefox */
     -moz-appearance: textfield;
@@ -52,6 +55,14 @@
     &::-webkit-inner-spin-button {
       -webkit-appearance: none;
       margin: 0;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+
+    &:hover {
+      cursor: pointer;
     }
   }
 }
