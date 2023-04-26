@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import "./App.scss";
 import NumericInput from "./components/NumericInput";
 import TipSelector from "./components/TipSelector";
+import InfoText from "./components/InfoText";
 
 interface ITipDataProps {
   bill: number | undefined;
@@ -10,6 +11,7 @@ interface ITipDataProps {
   personTotal: number;
   tips: number | undefined;
   customTip: number | undefined;
+  personTips: number;
 }
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
     personTotal: 0,
     tips: undefined,
     customTip: undefined,
+    personTips: 0,
   });
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,6 +46,7 @@ function App() {
       personTotal: 0,
       tips: undefined,
       customTip: undefined,
+      personTips: 0,
     });
   };
 
@@ -55,11 +59,11 @@ function App() {
     });
   };
 
-  interface IMemoizedSetTipDataProps {
+  interface IMemoSetTipDataProps {
     (tipDataToUpdate: Partial<ITipDataProps>): void;
   }
 
-  const memoSetTipData: IMemoizedSetTipDataProps = useCallback(
+  const memoSetTipData: IMemoSetTipDataProps = useCallback(
     (tipDataToUpdate) => {
       setTipData((prevTipData: ITipDataProps) => ({
         ...prevTipData,
@@ -85,6 +89,10 @@ function App() {
     if (tipData.people) {
       memoSetTipData({
         personTotal: parseFloat((tipData.total / tipData.people).toFixed(2)),
+        personTips:
+          tipData.tips && tipData.bill
+            ? (tipData.bill * (tipData.tips / 100)) / tipData.people
+            : 0,
       });
     } else {
       memoSetTipData({
@@ -121,9 +129,10 @@ function App() {
         maxLength={3}
         value={tipData.people}
         field="people"
+        errorMessage={tipData.people ? undefined : "Can't be zero"}
       />
-      <p>Total:{tipData.total}</p>
-      <p>Total per person:{tipData.personTotal}</p>
+      <InfoText text={`Tips per person: ${tipData.personTips}`} />
+      <InfoText text={`Total per person: ${tipData.personTotal}`} />
       <button onClick={handleReset} disabled={!tipData.total}>
         RESET
       </button>

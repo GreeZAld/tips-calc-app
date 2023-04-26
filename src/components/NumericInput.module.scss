@@ -1,10 +1,21 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: 400px;
+}
+
+.labelWrapper {
+  display: inline-flex;
+  justify-content: space-between;
 }
 
 .label {
   font-weight: 700;
+}
+
+.error {
+  font-weight: 700;
+  color: red;
 }
 
 .inputWrapper {
