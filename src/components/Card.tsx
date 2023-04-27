@@ -114,7 +114,7 @@ function Card() {
           label="Bill"
           onChange={onInputChange}
           icon="bill"
-          maxLength={10}
+          maxLength={4}
           value={tipData.bill}
           field="bill"
         />

@@ -9,6 +9,7 @@
 
   .infoTextWrapper {
     text-align: left;
+    min-width: min-content;
 
     .text {
       margin: 0;
@@ -23,7 +24,7 @@
   }
 
   .value {
-    font-size: 48px;
+    font-size: 36px;
     color: $strong-cyan;
   }
 
@@ -31,6 +32,7 @@
     margin-bottom: 1em;
 
     .infoTextWrapper {
+      min-width: min-content;
       .text {
         font-size: 16px;
       }
@@ -41,7 +43,7 @@
     }
 
     .value {
-      font-size: 28px;
+      font-size: 26px;
     }
   }
 }
