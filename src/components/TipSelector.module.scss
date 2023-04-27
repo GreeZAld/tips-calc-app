@@ -1,33 +1,63 @@
 @import "./variables.scss";
 
-.input {
-  background-color: $very-light-grayish-cyan;
-  height: 45px;
-  width: 120px;
-  border: none;
-  border-radius: 5px;
-  margin: 5px;
-  padding: 0;
-  font-size: 24px;
-  color: $very-dark-cyan;
-  outline-color: $strong-cyan;
-  text-align: end;
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 2em auto;
 
-  /* Firefox */
-  -moz-appearance: textfield;
-
-  /* Chrome, Safari, Edge, Opera */
-  &::-webkit-outer-spin-button,
-  &::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  .tipSelectorWrapper {
+    display: flex;
+    flex-direction: row;
+    row-gap: 0.8em;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 5px;
+    box-sizing: border-box;
   }
 
-  &:focus::placeholder {
-    color: transparent;
+  .tipSelectorLabel {
+    font-weight: 700;
+    font-size: 20px;
+    display: flex;
+    margin: 10px 5px 5px;
+    color: $dark-grayish-cyan;
   }
 
-  &:hover {
-    cursor: pointer;
+  .input {
+    background-color: $very-light-grayish-cyan;
+    height: 45px;
+    width: 30%;
+    border: none;
+    border-radius: 5px;
+    font-size: 24px;
+    color: $very-dark-cyan;
+    outline-color: $strong-cyan;
+    text-align: end;
+    box-sizing: border-box;
+    padding-right: 10px;
+    font-family: SpaceMonoBold, sans-serif;
+
+    /* Firefox */
+    -moz-appearance: textfield;
+
+    /* Chrome, Safari, Edge, Opera */
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &::placeholder {
+      color: $very-dark-cyan;
+    }
+
+    &:focus::placeholder {
+      color: transparent;
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 }

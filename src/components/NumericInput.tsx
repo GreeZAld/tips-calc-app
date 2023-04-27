@@ -17,7 +17,7 @@ const NumericInput: React.FC<INumericInputProps> = (
   const [errorDisplayed, setErrorDisplayed] = useState<boolean>(false);
 
   useEffect(() => {
-    props.errorMessage && setErrorDisplayed(true);
+    props.errorMessage ? setErrorDisplayed(true) : setErrorDisplayed(false);
   }, [props.errorMessage]);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ const NumericInput: React.FC<INumericInputProps> = (
         <i className={styles[props.icon]}></i>
         <input
           name={props.field}
-          className={styles.input}
+          className={errorDisplayed ? styles.errorInput : styles.input}
           type="number"
           maxLength={props.maxLength}
           placeholder="0"

@@ -88,7 +88,7 @@ function Card() {
 
     if (tipData.people) {
       memoSetTipData({
-        personTotal: parseFloat((tipData.total / tipData.people).toFixed(2)),
+        personTotal: tipData.total / tipData.people,
         personTips:
           tipData.tips && tipData.bill
             ? (tipData.bill * (tipData.tips / 100)) / tipData.people
@@ -128,15 +128,17 @@ function Card() {
           label="Number of People"
           onChange={onInputChange}
           icon="people"
-          maxLength={3}
+          maxLength={2}
           value={tipData.people}
           field="people"
           errorMessage={tipData.people ? undefined : "Can't be zero"}
         />
       </div>
       <div className={styles.resultWrapper}>
-        <InfoText text={`Tips per person: ${tipData.personTips}`} />
-        <InfoText text={`Total per person: ${tipData.personTotal}`} />
+        <div className={styles.resultTextWrapper}>
+          <InfoText text="Tip amount" value={tipData.personTips} />
+          <InfoText text="Total" value={tipData.personTotal} />
+        </div>
         <button onClick={handleReset} disabled={!tipData.total}>
           RESET
         </button>

@@ -4,12 +4,39 @@
   width: 50%;
   margin: 0 auto;
   background-color: $white;
-  border-radius: 20px;
+  border-radius: 25px;
   display: flex;
-  padding: 30px;
+  justify-content: space-between;
+  padding: 40px;
+  box-sizing: border-box;
 
   .inputWrapper,
   .resultWrapper {
-    width: 50%;
+    width: 48%;
+    height: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+  }
+
+  .resultWrapper {
+    background-color: $very-dark-cyan;
+    border-radius: 20px;
+    border: none;
+    padding: 40px;
+
+    button {
+      align-self: center;
+      border: none;
+      width: 100%;
+      height: 2.5em;
+      border-radius: 5px;
+      font-size: 20px;
+      font-weight: 700;
+      background-color: $strong-cyan;
+      cursor: pointer;
+    }
   }
 }

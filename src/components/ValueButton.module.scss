@@ -2,13 +2,14 @@
 
 @mixin button {
   height: 45px;
-  width: 120px;
+  width: 30%;
   border: none;
   border-radius: 5px;
-  margin: 5px;
   font-size: 24px;
   color: $very-light-grayish-cyan;
   cursor: pointer;
+  box-sizing: border-box;
+  font-family: SpaceMonoBold, sans-serif;
 }
 
 .inactiveButton {

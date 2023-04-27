@@ -3,6 +3,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
+  margin: 10px auto 0;
 }
 
 .labelWrapper {
@@ -11,22 +13,27 @@
 }
 
 .label {
-  font-weight: 700;
+  font-size: 20px;
+  margin-left: 5px;
+  color: $dark-grayish-cyan;
 }
 
 .error {
-  font-weight: 700;
-  color: red;
+  font-size: 20px;
+  margin-left: 5px;
+  color: orange;
 }
 
 .inputWrapper {
-  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  box-sizing: border-box;
 
   i {
-    height: 30px;
+    height: 45px;
     width: 20px;
     position: absolute;
-    padding: 5px;
+    margin-left: 10px;
 
     &.bill {
       background: url("../assets/icon-dollar.svg") no-repeat center;
@@ -36,16 +43,18 @@
     }
   }
 
-  .input {
+  @mixin input {
     text-align: end;
-    background-color: $very-light-grayish-cyan;
     border: none;
-    height: 30px;
+    height: 45px;
     border-radius: 5px;
-    padding: 5px 5px 5px 40px;
     color: $dark-grayish-cyan;
     font-size: 24px;
     outline-color: $strong-cyan;
+    width: 100%;
+    background-color: $very-light-grayish-cyan;
+    padding-right: 10px;
+    box-sizing: border-box;
 
     /* Firefox */
     -moz-appearance: textfield;
@@ -64,5 +73,16 @@
     &:hover {
       cursor: pointer;
     }
+  }
+
+  .input {
+    @include input;
+  }
+
+  .errorInput {
+    @include input;
+
+    outline-color: orange;
+    border: 2px solid orange;
   }
 }

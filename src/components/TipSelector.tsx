@@ -14,22 +14,25 @@ const TipSelector: React.FC<ITipSelectorProps> = (props: ITipSelectorProps) => {
 
   return (
     <div className={styles.wrapper}>
-      {props.values.map((item) => (
-        <ValueButton
-          value={item}
-          onClick={props.onClick}
-          active={props.activeTip === item}
-          key={`${id}-${props.values.indexOf(item)}`}
+      <label className={styles.tipSelectorLabel}>Select Tip %</label>
+      <div className={styles.tipSelectorWrapper}>
+        {props.values.map((item) => (
+          <ValueButton
+            value={item}
+            onClick={props.onClick}
+            active={props.activeTip === item}
+            key={`${id}-${props.values.indexOf(item)}`}
+          />
+        ))}
+        <input
+          className={styles.input}
+          type="number"
+          maxLength={2}
+          placeholder="Custom"
+          onChange={props.onChange}
+          name="tips"
         />
-      ))}
-      <input
-        className={styles.input}
-        type="number"
-        maxLength={2}
-        placeholder="Custom"
-        onChange={props.onChange}
-        name="tips"
-      />
+      </div>
     </div>
   );
 };

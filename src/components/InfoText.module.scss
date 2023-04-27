@@ -1,0 +1,29 @@
+@import "./variables.scss";
+
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  height: 3em;
+
+  .infoTextWrapper {
+    text-align: left;
+
+    .text {
+      margin: 0;
+      color: $very-light-grayish-cyan;
+      font-size: 20px;
+    }
+
+    .personLabel {
+      color: $dark-grayish-cyan;
+      font-size: 18px;
+    }
+  }
+
+  .value {
+    font-size: 48px;
+    color: $strong-cyan;
+  }
+}
