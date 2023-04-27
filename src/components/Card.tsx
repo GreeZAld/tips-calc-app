@@ -136,7 +136,7 @@ function Card() {
       </div>
       <div className={styles.resultWrapper}>
         <div className={styles.resultTextWrapper}>
-          <InfoText text="Tip amount" value={tipData.personTips} />
+          <InfoText text="Tip Amount" value={tipData.personTips} />
           <InfoText text="Total" value={tipData.personTotal} />
         </div>
         <button onClick={handleReset} disabled={!tipData.total}>

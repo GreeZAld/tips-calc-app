@@ -10,6 +10,10 @@
   cursor: pointer;
   box-sizing: border-box;
   font-family: SpaceMonoBold, sans-serif;
+
+  @media (width: $mobile) {
+    width: 48%;
+  }
 }
 
 .inactiveButton {

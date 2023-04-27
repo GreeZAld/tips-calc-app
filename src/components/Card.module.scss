@@ -2,6 +2,7 @@
 
 .wrapper {
   width: 50%;
+  min-width: 850px;
   margin: 0 auto;
   background-color: $white;
   border-radius: 25px;
@@ -37,6 +38,19 @@
       font-weight: 700;
       background-color: $strong-cyan;
       cursor: pointer;
+    }
+  }
+
+  @media (width: $mobile) {
+    width: 100%;
+    flex-direction: column;
+    min-width: 100%;
+    padding: 30px;
+
+    .inputWrapper,
+    .resultWrapper {
+      width: 100%;
+      margin: 0 auto 1em;
     }
   }
 }

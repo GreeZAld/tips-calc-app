@@ -18,4 +18,22 @@
       margin-bottom: 3em;
     }
   }
+
+  @media (width: $mobile) {
+    display: flex;
+    align-items: center;
+    justify-content: unset;
+
+    span {
+      margin: 5px;
+
+      &:first-of-type {
+        margin-top: 1.5em;
+      }
+
+      &:last-of-type {
+        margin-bottom: 1.5em;
+      }
+    }
+  }
 }

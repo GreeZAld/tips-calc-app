@@ -12,15 +12,18 @@
   justify-content: space-between;
 }
 
-.label {
+@mixin label {
   font-size: 20px;
   margin-left: 5px;
   color: $dark-grayish-cyan;
+  @include mobileFont;
+}
+
+.label {
+  @include label;
 }
 
 .error {
-  font-size: 20px;
-  margin-left: 5px;
   color: orange;
 }
 

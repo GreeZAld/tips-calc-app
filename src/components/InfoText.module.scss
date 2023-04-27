@@ -26,4 +26,22 @@
     font-size: 48px;
     color: $strong-cyan;
   }
+
+  @media (width: $mobile) {
+    margin-bottom: 1em;
+
+    .infoTextWrapper {
+      .text {
+        font-size: 16px;
+      }
+
+      .personLabel {
+        font-size: 14px;
+      }
+    }
+
+    .value {
+      font-size: 28px;
+    }
+  }
 }

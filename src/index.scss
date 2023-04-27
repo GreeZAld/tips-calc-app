@@ -19,4 +19,9 @@ body,
   height: 100%;
   font-size: 24px;
   font-family: SpaceMonoBold, sans-serif;
+  @include mobileFont;
+
+  // @media (width: $mobile) {
+  //   font-size: 18px;
+  // }
 }
